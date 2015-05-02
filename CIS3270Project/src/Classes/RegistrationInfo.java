@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import projectCIS3270.ConfirmReg;
 import Classes.MainMenu.RegListener;
 
 public class RegistrationInfo extends JFrame{
@@ -62,6 +63,15 @@ public class RegistrationInfo extends JFrame{
 		add(p2, BorderLayout.SOUTH);
 		RegListener listener1 = new RegListener();
 		mainMenu.addActionListener(listener1);
+		
+		bOK.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				ConfirmReg cReg = new ConfirmReg();
+				cReg.setSize(500, 500);
+				cReg.setLocationRelativeTo(null);
+				cReg.setVisible(true);
+				//addded content should be added herre			}
+		});
 
 	}
 	
