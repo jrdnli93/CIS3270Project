@@ -2,6 +2,9 @@ package Classes;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class SplashScreen extends JWindow{
 
@@ -24,21 +27,20 @@ public class SplashScreen extends JWindow{
 			ex.printStackTrace();
 		}
 		setVisible(false);
+		app();
+	}
+	
+	public void app(){
 		MainMenu start = new MainMenu();
 		start.setTitle("Main Menu");
 		start.setSize(500, 500);
 		start.setLocationRelativeTo(null);
 		start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		start.setVisible(true);
+		start.setVisible(true);	
+		
+		
 	}
 	
-	public void app(){
-		JFrame window = new JFrame("Application");
-		window.add(new JLabel("App goes here"));
-		window.setSize(300, 300);
-		window.setLocationRelativeTo(null);
-		window.setVisible(true);		
-	}
 	public static void main(String[] args){
 		new SplashScreen(4000);
 	}
