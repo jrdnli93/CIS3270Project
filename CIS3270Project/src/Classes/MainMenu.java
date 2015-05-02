@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import projectCIS3270.LoginInfo;
+import projectCIS3270.MainMenu;
+import projectCIS3270.RegistrationInfo;
+import projectCIS3270.MainMenu.RegListener;
+
 public class MainMenu extends JFrame{
 	public MainMenu(){
 
@@ -25,6 +30,7 @@ public class MainMenu extends JFrame{
 				login.setSize(500, 500);
 				login.setLocationRelativeTo(null);
 				login.setVisible(true);
+				dispose();
 			}
 		});
 		eProgram.addActionListener(new ActionListener(){
@@ -51,6 +57,7 @@ public class MainMenu extends JFrame{
 			confirm.setLocationRelativeTo(null);
 			confirm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 			confirm.setVisible(true);
+			dispose();
 		}
 	}
 }
