@@ -1,4 +1,4 @@
-package projectCIS3270;
+package Classes;
 
 import java.awt.BorderLayout;
 
@@ -20,14 +20,14 @@ public class ConfirmReg extends JFrame {
 		add(p2, BorderLayout.SOUTH);
 		
 		
-}
+	}
 
-public static void main(String[] args){
-	ConfirmReg frame = new ConfirmReg();
-	frame.setTitle("Verify Information");
-	frame.setSize(500, 500);
-	frame.setLocationRelativeTo(null);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setVisible(true);
+	public static void main(String[] args){
+		ConfirmReg frame = new ConfirmReg();
+		frame.setTitle("Verify Information");
+		frame.setSize(500, 500);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 }

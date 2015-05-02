@@ -58,4 +58,13 @@ public class Checks {
 			return true;
 		}
 	}
+	//Password 8-16, returns false if outside of range, returns true if inside range
+	public boolean checkPassword(String password) {
+		if (password.length() < 8 || password.length() > 16) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }
