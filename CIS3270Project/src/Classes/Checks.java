@@ -106,5 +106,12 @@ public class Checks {
 			return true;
 		}
 	}
-	
+	public int checkAdminCode (String adminCode) {
+		if (adminCode.equals("1080p")) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
 }

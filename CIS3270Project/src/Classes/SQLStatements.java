@@ -30,7 +30,7 @@ public class SQLStatements {
 		return resultsArrayList;
 	}
 	
-	public static String update(String a) throws SQLException, ClassNotFoundException{
+	public static void update(String a) throws SQLException, ClassNotFoundException{
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		
@@ -42,7 +42,7 @@ public class SQLStatements {
 		
 		connection.close();
 		
-		return "" + result;
+		
 		
 	}
 

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CheckLogin {
 
-	public boolean checkLogin (String a, String b) {
+	public static boolean checkLogin (String a, String b) {
 		
 		SQLStatements s = new SQLStatements();
 		

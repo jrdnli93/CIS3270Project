@@ -97,27 +97,33 @@ public class RegistrationInfo extends JFrame{
 					System.out.println("Email already taken");
 				}
 				
-				if (emailCheck == true && SSNcheck == true && emailCheck == true) {
+				if (usernameCheck == true && SSNcheck == true && emailCheck == true) {
 					try {
+						
 						//updates database after check
-						s.update("insert into accountinfo (username, password) values ('" + username + "', '" + password + "')");
-						s.update("insert into user (username, password, firstname, middleinitial, lastname, address, city, state, zipcode, email, ssn, securityquestion, securityanswer) values ('" + username + "', '" + password + "', '" + fName + "', '" + mInitial + "', '" + lName + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "', '" + email + "', '" + ssn + "', '" + secQuestion + "', '" + secAnswer + "')");
+						s.update("insert into accountinfo (username, password) values ('" + username.getText() + "', '" + password.getText() + "')");
+						//not working
+						s.update("insert into user (username, password, firstname, middleinitial, lastname, address, city, state, zipcode, email, ssn, securityquestion, securityanswer) values ('" + username.getText() + "', '" + password.getText() + "', '" + fName.getText() + "', '" + mInitial.getText() + "', '" + lName.getText() + "', '" + address.getText() + "', '" + city.getText() + "', '" + state.getText() + "', '" + zip.getText() + "', '" + email.getText() + "', '" + ssn.getText() + "', '" + secQuestion.getText() + "', '" + secAnswer.getText() + "')");
+						ConfirmReg cReg = new ConfirmReg();
+						cReg.setSize(500, 500);
+						cReg.setLocationRelativeTo(null);
+						cReg.setVisible(true);
 					} catch (ClassNotFoundException | SQLException e1) {
 						System.out.println("error");
 						
 					}
 				}
 				else {
-					
+					RegistrationError rError = new RegistrationError();
+					rError.setSize(500, 500);
+					rError.setLocationRelativeTo(null);
+					rError.setVisible(true);
 				}
 				
 			
 				
 				
-				ConfirmReg cReg = new ConfirmReg();
-				cReg.setSize(500, 500);
-				cReg.setLocationRelativeTo(null);
-				cReg.setVisible(true);
+				
 				//addded content should be added herre			
 
 			}
@@ -143,6 +149,7 @@ public class RegistrationInfo extends JFrame{
 			confirm.setLocationRelativeTo(null);
 			confirm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			confirm.setVisible(true);
+			
 			
 		}
 	}

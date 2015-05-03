@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import projectCIS3270.MainMenu;
 
 public class ConfirmReg extends JFrame {
 	public ConfirmReg(){

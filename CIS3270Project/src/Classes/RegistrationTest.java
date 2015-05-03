@@ -38,6 +38,8 @@ public class RegistrationTest {
 		
 		//add to action listener
 		//checks username and SSN
+		
+		
 		Checks c = new Checks();
 		SQLStatements s = new SQLStatements();
 		boolean usernameCheck, SSNcheck, emailCheck;

@@ -6,24 +6,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import projectCIS3270.CustomerHome;
-import projectCIS3270.MainMenu;
-import projectCIS3270.PasswordRetreival;
-import projectCIS3270.RegistrationInfo;
-
 public class LoginInfo extends JFrame{
 	public LoginInfo(){
 		
-		JTextField userText = new JTextField();
-		JTextField passText = new JTextField();
-		JLabel username = new JLabel("Username");
-		JLabel password = new JLabel("Password");
-		JLabel fPassword = new JLabel("Forgot Password?");
-		JLabel nMember = new JLabel("Not a member?");
-		JButton mainMenu = new JButton("Main Menu");
-		JButton bOK = new JButton("OK");
-		JButton register = new JButton("Register");	
-		JButton pRetrieval = new JButton("Password Retrieval");
+		final JTextField userText = new JTextField();
+		final JTextField passText = new JTextField();
+		final JLabel username = new JLabel("Username");
+		final JLabel password = new JLabel("Password");
+		final JLabel fPassword = new JLabel("Forgot Password?");
+		final JLabel nMember = new JLabel("Not a member?");
+		final JButton mainMenu = new JButton("Main Menu");
+		final JButton bOK = new JButton("OK");
+		final JButton register = new JButton("Register");	
+		final JButton pRetrieval = new JButton("Password Retrieval");
 		
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
@@ -71,14 +66,31 @@ public class LoginInfo extends JFrame{
 			}
 		});
 		bOK.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				CustomerHome cHome = new CustomerHome();
-				cHome.setSize(500, 500);
-				cHome.setLocationRelativeTo(null);
-				cHome.setVisible(true);
-				dispose();
-			}
+				
+			
+			
+				public void actionPerformed(ActionEvent e){
+					
+					if (CheckLogin.checkLogin(userText.getText(), passText.getText())) {
+					
+					CustomerHome cHome = new CustomerHome();
+					cHome.setSize(500, 500);
+					cHome.setLocationRelativeTo(null);
+					cHome.setVisible(true);
+					dispose();
+					}
+					else {
+						RegistrationError rError = new RegistrationError();
+						rError.setSize(500, 500);
+						rError.setLocationRelativeTo(null);
+						rError.setVisible(true);
+						dispose();
+					}
+				}
+				
+			
 		});
+		
 		
 	}
 	

@@ -6,10 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import projectCIS3270.LoginInfo;
-import projectCIS3270.MainMenu;
-import projectCIS3270.RegistrationInfo;
-import projectCIS3270.MainMenu.RegListener;
+
 
 public class MainMenu extends JFrame{
 	public MainMenu(){
