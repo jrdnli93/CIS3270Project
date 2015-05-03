@@ -3,20 +3,21 @@ package Classes;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
 public class PasswordRetreival extends JFrame{
 	public PasswordRetreival(){
 		//First password retrieval menu (Username/Social Security Number
-		JLabel userName = new JLabel("Username");
-		JLabel ssNum = new JLabel("Social Security Number");
+		final JLabel userName = new JLabel("Username");
+		final JLabel ssNum = new JLabel("Social Security Number");
 		
-		JTextField uName = new JTextField();
-		JTextField ssn = new JTextField();
+		final JTextField uName = new JTextField();
+		final JTextField ssn = new JTextField();
 		
-		JButton bOK = new JButton("OK");
-		JButton mMenu = new JButton("Main Menu");
+		final JButton bOK = new JButton("OK");
+		final JButton mMenu = new JButton("Main Menu");
 		
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
@@ -34,11 +35,44 @@ public class PasswordRetreival extends JFrame{
 		
 		bOK.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				PasswordRetreival2 login = new PasswordRetreival2();
-				login.setSize(500, 500);
-				login.setLocationRelativeTo(null);
-				login.setVisible(true);
-				dispose();
+				Checks c = new Checks();
+				SQLStatements s = new SQLStatements();
+				//checks username and social security number
+				//if username and social security number are true
+				if (c.passwordRetrieval(uName.getText(), ssn.getText())) {
+					//add isAdmin method
+					Users user;
+					if (c.isAdmin(uName.getText())) {
+						user =  new Admins();
+						((Admins)user).setUsername(uName.getText());
+						((Admins)user).setSSN(ssn.getText());
+					}
+					else {
+						user = new Customers();
+						((Customers)user).setUsername(uName.getText());
+						((Customers)user).setSSN(ssn.getText());
+						try {
+							((Customers)user).setSecurityQuestion(s.select("select securityquestion from user where username = '" + uName.getText() + "'").get(0));
+							((Customers)user).setSecurityAnswer(s.select("select securityanswer from user where username = '" + uName.getText() + "'").get(0));
+							((Customers)user).setPassword(s.select("select password from user where username = '" + uName.getText() + "'").get(0));
+						} catch (ClassNotFoundException | SQLException e1) {
+							System.out.println("error");
+						}
+					}
+					PasswordRetreival2 login = new PasswordRetreival2(user);
+					login.setSize(500, 500);
+					login.setLocationRelativeTo(null);
+					login.setVisible(true);
+					dispose();
+				}
+				else {
+					PasswordRetreival4 login = new PasswordRetreival4();
+					login.setSize(500, 500);
+					login.setLocationRelativeTo(null);
+					login.setVisible(true);
+					
+				}
+				
 				
 				/*
 				THIS WOULD BE THE CODE FOR THE ERROR WHEN THE INPUT

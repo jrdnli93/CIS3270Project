@@ -1,8 +1,12 @@
 package Classes;
 
+import java.util.ArrayList;
+
 public class Customers extends Users{
 
 	private String firstName;
+	
+	private String middleInitial;
 	
 	private String lastName;
 	
@@ -12,6 +16,8 @@ public class Customers extends Users{
 	
 	private String address;
 	
+	private String City;
+	
 	private String zipCode;
 	
 	private String State;
@@ -19,6 +25,26 @@ public class Customers extends Users{
 	private String securityQuestion;
 	
 	private String securityAnswer;
+	
+	private boolean admin;
+	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	private ArrayList<String> flights = new ArrayList<String>();
+
+	public ArrayList<String> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(ArrayList<String> flights) {
+		this.flights = flights;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -91,6 +117,24 @@ public class Customers extends Users{
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
 	}
+
+	public String getMiddleInitial() {
+		return middleInitial;
+	}
+
+	public void setMiddleInitial(String middleInitial) {
+		this.middleInitial = middleInitial;
+	}
+
+	public String getCity() {
+		return City;
+	}
+
+	public void setCity(String city) {
+		City = city;
+	}
+
+	
 	
 	
 }

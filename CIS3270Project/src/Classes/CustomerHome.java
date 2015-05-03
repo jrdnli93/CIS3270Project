@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class CustomerHome extends JFrame{
-	public CustomerHome(){
+	public CustomerHome(final Users u){
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
 		p1.add(new JButton("Search flight system"));

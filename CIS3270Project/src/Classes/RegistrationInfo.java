@@ -76,6 +76,8 @@ public class RegistrationInfo extends JFrame{
 				SQLStatements s = new SQLStatements();
 				boolean usernameCheck, SSNcheck, emailCheck;
 				
+				
+				//SHOW IN A JFrame
 				if (usernameCheck = c.usernameAvailable(username.getText())) {
 					System.out.println(username.getText());
 				}

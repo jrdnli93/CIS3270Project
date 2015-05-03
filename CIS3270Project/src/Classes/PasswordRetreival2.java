@@ -12,11 +12,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PasswordRetreival2 extends JFrame{
-	public PasswordRetreival2(){
-	//Second password retreival page (Security Question)	
-	JLabel sQuestion = new JLabel("SECURITY QUESTION GOES HERE");
+	public PasswordRetreival2(final Users u){
+	//Second password retreival page (Security Question)
+
+		
+		
+	final JLabel sQuestion = new JLabel(((Customers)u).getSecurityQuestion());
 	//answer to question goes here
-	JTextField answer = new JTextField();
+	final JTextField answer = new JTextField();
 	//answer to question goes here
 	
 	JButton bOK = new JButton("OK");
@@ -37,11 +40,23 @@ public class PasswordRetreival2 extends JFrame{
 	
 	bOK.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			PasswordRetreival3 frame = new PasswordRetreival3();
-			frame.setSize(500, 500);
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
-			dispose();
+			if (((Customers)u).getSecurityAnswer().equals(answer.getText())) {
+				PasswordRetreival3 frame = new PasswordRetreival3(u);
+				frame.setSize(500, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				dispose();
+			}
+			else {
+				System.out.println(((Customers)u).getSecurityAnswer());
+				System.out.println(answer.getText());
+				PasswordRetreival4 frame = new PasswordRetreival4();
+				frame.setSize(500, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+			}
+			
+			
 			
 			/*
 			THIS WOULD BE THE CODE FOR THE ERROR WHEN THE INPUT
@@ -65,7 +80,9 @@ public class PasswordRetreival2 extends JFrame{
 	});
 }
 public static void main(String[] args){
-	PasswordRetreival2 frame = new PasswordRetreival2();
+	Users u = new Customers();
+	
+	PasswordRetreival2 frame = new PasswordRetreival2(u);
 	frame.setTitle("Password Retreival");
 	frame.setSize(500, 500);
 	frame.setLocationRelativeTo(null);

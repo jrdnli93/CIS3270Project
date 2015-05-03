@@ -13,10 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PasswordRetreival3 extends JFrame{
-	public PasswordRetreival3(){
+	public PasswordRetreival3(final Users u){
 	
 	//display password
-	JLabel passwordText = new JLabel("Your password is: PASSWORD HERE");
+	final JLabel passwordText = new JLabel(u.getPassword());
 	//display password
 	
 	JButton mMenu = new JButton("Main Menu");
@@ -43,7 +43,8 @@ public class PasswordRetreival3 extends JFrame{
 	});
 }
 	public static void main(String[] args){
-		PasswordRetreival3 frame = new PasswordRetreival3();
+		Users u = new Customers();
+		PasswordRetreival3 frame = new PasswordRetreival3(u);
 		frame.setTitle("Password Retreival");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

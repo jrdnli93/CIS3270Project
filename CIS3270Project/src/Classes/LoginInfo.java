@@ -3,6 +3,7 @@ package Classes;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -70,24 +71,61 @@ public class LoginInfo extends JFrame{
 			
 			
 				public void actionPerformed(ActionEvent e){
+					SQLStatements s = new SQLStatements();
 					
 					if (CheckLogin.checkLogin(userText.getText(), passText.getText())) {
+						//Access database to get relevant information so you don't have to use SQL anymore
+						Users u = new Customers();
+						((Customers)u).setUsername(userText.getText());
+						((Customers)u).setPassword(passText.getText());
+						try {
+							((Customers)u).setFirstName((s.select("select firstname from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setMiddleInitial((s.select("select middleinitial from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setLastName((s.select("select lastname from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setAddress((s.select("select address from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setCity((s.select("select city from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setState((s.select("select state from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setZipCode((s.select("select zipcode from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).seteMail((s.select("select email from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setSSN((s.select("select ssn from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setSecurityQuestion((s.select("select securityquestion from user where username = '" + userText.getText() + "'").get(0)));
+							((Customers)u).setSecurityAnswer((s.select("select securityanswer from user where username = '" + userText.getText() + "'").get(0)));
+							
+							if (s.select("select admin from user where username = '" + userText.getText() + "'").get(0).equals("1")) {
+								((Customers)u).setAdmin(true);
+							}
+							else {
+								((Customers)u).setAdmin(false);
+							}
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
+						
+							
+						
+						
+						
 					
-					CustomerHome cHome = new CustomerHome();
-					cHome.setSize(500, 500);
-					cHome.setLocationRelativeTo(null);
-					cHome.setVisible(true);
-					dispose();
+							CustomerHome cHome = new CustomerHome(u);
+							cHome.setSize(500, 500);
+							cHome.setLocationRelativeTo(null);
+							cHome.setVisible(true);
+							dispose();
 					}
+						
+					
 					else {
-						RegistrationError rError = new RegistrationError();
-						rError.setSize(500, 500);
-						rError.setLocationRelativeTo(null);
-						rError.setVisible(true);
+						LoginError lError = new LoginError();
+						lError.setSize(500, 500);
+						lError.setLocationRelativeTo(null);
+						lError.setVisible(true);
 						dispose();
 					}
-				}
 				
+				}
 			
 		});
 		
