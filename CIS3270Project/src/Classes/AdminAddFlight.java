@@ -1,0 +1,98 @@
+package Classes;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+//Admins options to add new flight to database
+public class AdminAddFlight extends JFrame{
+	public AdminAddFlight(){
+		JComboBox depart = new JComboBox(new String[]{"California", "Georgia", "Hawaii", "New York", "Texas"});
+		JComboBox arrive = new JComboBox(new String[]{"California", "Georgia", "Hawaii", "New York", "Texas"});
+		JTextField seats = new JTextField(3);
+		JTextField price = new JTextField(4);
+		
+		JComboBox month = new JComboBox(new String[]{"Jan", "Feb", "March", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
+		JComboBox daySD = new JComboBox(new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
+		JComboBox dayDD = new JComboBox(new String[]{"0", "1", "2", "3"});
+		JComboBox year = new JComboBox(new String[]{"2015", "2016", "2017", "2018", "2019", "2020"});
+		JComboBox hourD = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+		JComboBox minuteD = new JComboBox(new String[]{"30", "00"});
+		JComboBox amPMD = new JComboBox(new String[]{"am", "pm"});
+		JComboBox TZD = new JComboBox(new String[]{"Eastern", "Central", "Pacific", "Hawaii"});
+		JComboBox hourA = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+		JComboBox minuteA = new JComboBox(new String[]{"30", "00"});
+		JComboBox amPMA = new JComboBox(new String[]{"am", "pm"});
+		JComboBox TZA = new JComboBox(new String[]{"Eastern", "Central", "Pacific", "Hawaii"});
+		
+		JButton aHome = new JButton("Home Menu");
+		JButton addFlight = new JButton("Add Flight");
+		
+		JPanel p1 = new JPanel();
+		p1.setLayout(new GridLayout(4, 2));
+		p1.add(new JLabel("State of Departure"));
+		p1.add(depart);
+		p1.add(new JLabel("State of Destination"));
+		p1.add(arrive);
+		p1.add(new JLabel("Total seats available"));
+		p1.add(seats);
+		p1.add(new JLabel("Price per seat"));
+		p1.add(price);
+		
+		JPanel p2 = new JPanel();
+		p2.setLayout(new GridLayout(3, 4));
+		p2.add(new JLabel("Departure Time"));
+		p2.add(hourD);
+		p2.add(minuteD);
+		p2.add(amPMD);
+		p2.add(TZD);
+		p2.add(new JLabel("Arrival Time"));
+		p2.add(hourA);
+		p2.add(minuteA);
+		p2.add(amPMA);
+		p2.add(TZA);
+		p2.add(new JLabel("Date of Flight"));
+		p2.add(month);
+		p2.add(dayDD);
+		p2.add(daySD);
+		p2.add(year);
+		
+		add(p1, BorderLayout.NORTH);
+		add(p2, BorderLayout.CENTER);
+		
+		JPanel p3 = new JPanel();
+		p3.add(aHome);
+		p3.add(addFlight);
+		add(p3, BorderLayout.SOUTH);
+		
+		aHome.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				AdminHome frame = new AdminHome();
+				frame.setSize(500, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		
+		//current execution is to add flight, need to add edit/delete flight info
+		addFlight.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				AdminAddConfirm frame = new AdminAddConfirm();
+				frame.setSize(500, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+	}
+	
+	public static void main(String[] args){
+		AdminAddFlight frame = new AdminAddFlight();
+		frame.setTitle("Flight Addition");
+		frame.setSize(500, 500);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+}
