@@ -2,28 +2,29 @@ package Classes;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 //Admins options to add new flight to database
 public class AdminAddFlight extends JFrame{
-	public AdminAddFlight(){
-		JComboBox depart = new JComboBox(new String[]{"California", "Georgia", "Hawaii", "New York", "Texas"});
-		JComboBox arrive = new JComboBox(new String[]{"California", "Georgia", "Hawaii", "New York", "Texas"});
-		JTextField seats = new JTextField(3);
-		JTextField price = new JTextField(4);
+	public AdminAddFlight(final Users u){
+		final JComboBox depart = new JComboBox(new String[]{"Los Angeles,CA", "Atlanta,GA", "Honolulu,HI", "New York,NY", "Austin,TX"});
+		final JComboBox arrive = new JComboBox(new String[]{"Los Angeles,CA", "Atlanta,GA", "Honolulu,HI", "New York,NY", "Austin,TX"});
+		final JTextField seats = new JTextField(3);
+		final JTextField price = new JTextField(4);
 		
-		JComboBox month = new JComboBox(new String[]{"Jan", "Feb", "March", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
-		JComboBox daySD = new JComboBox(new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
-		JComboBox dayDD = new JComboBox(new String[]{"0", "1", "2", "3"});
-		JComboBox year = new JComboBox(new String[]{"2015", "2016", "2017", "2018", "2019", "2020"});
-		JComboBox hourD = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
-		JComboBox minuteD = new JComboBox(new String[]{"30", "00"});
-		JComboBox amPMD = new JComboBox(new String[]{"am", "pm"});
-		JComboBox TZD = new JComboBox(new String[]{"Eastern", "Central", "Pacific", "Hawaii"});
-		JComboBox hourA = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
-		JComboBox minuteA = new JComboBox(new String[]{"30", "00"});
-		JComboBox amPMA = new JComboBox(new String[]{"am", "pm"});
-		JComboBox TZA = new JComboBox(new String[]{"Eastern", "Central", "Pacific", "Hawaii"});
+		final JComboBox month = new JComboBox(new String[]{"Jan", "Feb", "March", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"});
+		final JComboBox daySD = new JComboBox(new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
+		final JComboBox dayDD = new JComboBox(new String[]{"0", "1", "2", "3"});
+		final JComboBox year = new JComboBox(new String[]{"2015", "2016", "2017", "2018", "2019", "2020"});
+		final JComboBox hourD = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+		final JComboBox minuteD = new JComboBox(new String[]{"30", "00"});
+		final JComboBox amPMD = new JComboBox(new String[]{"am", "pm"});
+		final JComboBox TZD = new JComboBox(new String[]{"Eastern", "Central", "Pacific", "Hawaii"});
+		final JComboBox hourA = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+		final JComboBox minuteA = new JComboBox(new String[]{"30", "00"});
+		final JComboBox amPMA = new JComboBox(new String[]{"am", "pm"});
+		final JComboBox TZA = new JComboBox(new String[]{"Eastern", "Central", "Pacific", "Hawaii"});
 		
 		JButton aHome = new JButton("Home Menu");
 		JButton addFlight = new JButton("Add Flight");
@@ -67,7 +68,7 @@ public class AdminAddFlight extends JFrame{
 		
 		aHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminHome frame = new AdminHome();
+				AdminHome frame = new AdminHome(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -78,17 +79,46 @@ public class AdminAddFlight extends JFrame{
 		//current execution is to add flight, need to add edit/delete flight info
 		addFlight.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminAddConfirm frame = new AdminAddConfirm();
-				frame.setSize(500, 500);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
-				dispose();
+				SQLStatements s = new SQLStatements();
+				String[] departCityState = depart.getSelectedItem().toString().split("[,]");
+				String[] arrivalCityState = arrive.getSelectedItem().toString().split("[,]");
+				String departTime = hourD.getSelectedItem() + ":" + minuteD.getSelectedItem() + " " + amPMD.getSelectedItem() + " " + TZD.getSelectedItem();
+				String arriveTime = hourA.getSelectedItem() + ":" + minuteA.getSelectedItem() + " " + amPMA.getSelectedItem() + " " + TZA.getSelectedItem();
+				String date = month.getSelectedItem() + "/" + daySD.getSelectedItem() + dayDD.getSelectedItem() + "/" + year.getSelectedItem();
+				System.out.println(departCityState[0]);
+				System.out.println(departCityState[1]);
+				System.out.println(departTime);
+				System.out.println(arriveTime);
+				System.out.println(date);
+				
+				if (depart.getSelectedItem().equals(arrive.getSelectedItem())) {
+					AdminAddError frame = new AdminAddError();
+					frame.setSize(500, 500);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+				}
+				else {
+					try {
+						s.update("insert into flights (departcity, departstate, arrivalcity, arrivalstate, departtime, arrivaltime, flightdate, price, totalseats) values('" + departCityState[0] + "', '" + departCityState[1] + "', '" + arrivalCityState[0] + "', '" + arrivalCityState[1] + "', '" + departTime + "', '" + arriveTime + "', '" + date + "', '" + price.getText() + "', " + seats.getText() +")");
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					AdminAddConfirm frame = new AdminAddConfirm(u);
+					frame.setSize(500, 500);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+					dispose();
+				}
+				
+				
 			}
 		});
 	}
 	
 	public static void main(String[] args){
-		AdminAddFlight frame = new AdminAddFlight();
+		Users u = new Customers();
+		AdminAddFlight frame = new AdminAddFlight(u);
 		frame.setTitle("Flight Addition");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

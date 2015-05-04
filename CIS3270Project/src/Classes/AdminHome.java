@@ -78,7 +78,7 @@ public class AdminHome extends JFrame{
 		
 		addFlightDB.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminAddFlight frame = new AdminAddFlight();
+				AdminAddFlight frame = new AdminAddFlight(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -88,7 +88,7 @@ public class AdminHome extends JFrame{
 		
 		editFlightDB.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminEditDB frame = new AdminEditDB();
+				AdminEditDB frame = new AdminEditDB(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);

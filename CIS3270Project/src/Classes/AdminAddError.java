@@ -13,7 +13,7 @@ public class AdminAddError extends JFrame {
 	public AdminAddError(){
 		
 		JPanel p1 = new JPanel();
-		p1.add(new JLabel("Flight Info Cannot Be Added, Close This Window And Try Again"));
+		p1.add(new JLabel("Input fields invalid, Close This Window And Try Again"));
 		add(p1, BorderLayout.NORTH);
 		
 		

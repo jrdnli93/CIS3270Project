@@ -14,25 +14,22 @@ public class Test {
 		
 		SQLStatements s = new SQLStatements();
 
-		String statement = JOptionPane.showInputDialog("Enter SQL Statement:");
 		
-		ArrayList<String> results = null;
 		
-		ResultSet resultSet = null;
-		
-		int result = 0;
 		try {
-			//Tests if SQL statements work
-			results = s.select(statement);
-			System.out.println(results.get(0));
-			//Tests if username check works
-			Checks c = new Checks();
-			System.out.println(c.usernameAvailable("exampleacct123"));
-			//Tests if ssn check works
-			System.out.println(c.checkSSN("555555555"));
+			ArrayList<String> results = s.select("select * from flights");
+			Object[] r = results.toArray();
+			for (int i = 0; i < r.length; i++) {
+				p3.add();
+				if (i == 10) {
+					System.out.println();
+				}
+			}
 		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("Not valid");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 	}
 }

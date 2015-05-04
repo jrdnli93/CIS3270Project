@@ -3,16 +3,21 @@ package Classes;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+
+import org.ietf.jgss.MessageProp;
 
 public class AdminEditDB extends JFrame{
-	public AdminEditDB(){
+	public AdminEditDB(final Users u){
 
+		
+		
 		JButton aHome = new JButton("Home Menu");
 		JButton delete = new JButton("Delete");
 		JButton edit = new JButton("Edit");
@@ -21,16 +26,64 @@ public class AdminEditDB extends JFrame{
 		p1.add(new JLabel("Flight Schedule: Choose Whether To Edit Or Delete"));
 		add(p1, BorderLayout.NORTH);
 		
+		
+		JPanel p3 = new JPanel();
+		
+		
+		SQLStatements s = new SQLStatements();
+		
+		
+		add(p3, BorderLayout.CENTER);
+		try {
+			ArrayList<String> results = s.select("select * from flights");
+			Object[] r = results.toArray();
+			JCheckBox[] jcb = new JCheckBox[30];
+			for (int i = 0; i < r.length; i++) {
+				System.out.println(results.get(i));
+				
+				p3.add(jcb[0] = new JCheckBox(s.select("select flightnumber from flights where flightnumber = " + results.get(i)) + " " +
+						s.select("select departcity from flights where flightnumber = " + results.get(i)) + " " +
+						s.select("select departstate from flights where flightnumber = " + results.get(i)) + " " +
+						s.select("select arrivalcity from flights where flightnumber = " + results.get(i)) + " " + 
+						s.select("select arrivalstate from flights where flightnumber = " + results.get(i)) + " " + 
+						s.select("select departtime from flights where flightnumber = " + results.get(i)) + " " +
+						s.select("select arrivaltime from flights where flightnumber = " + results.get(i)) + " " +
+						s.select("select seatsavailable from flights where flightnumber = " + results.get(i)) + " " +
+						s.select("select totalseats from flights where flightnumber = " + results.get(i))
+						
+						)
+						
+					);
+				
+				
+				/*s.select("select flightnumber from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select departcity from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select departstate from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select arrivalcity from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select city from flights where flightnumber = '" + results.get(i)) + " " +
+				s.select("select departtime from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select arrivetime from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select seatsavailable from flights where flightnumber = " + results.get(i)) + " " +
+				s.select("select totalseats from flights where flightnumber = " + results.get(i))
+				*/
+				
+			}
+		} catch (ClassNotFoundException | SQLException e1) {
+			System.out.println("SQL ERROR");
+		} catch (Exception e) {
+			System.out.println("ARRAYLIST ERROR");
+		}
 		JPanel p2 = new JPanel();
 		p2.add(aHome);
 		p2.add(delete);
 		p2.add(edit);
 		add(p2, BorderLayout.SOUTH);
 		
+		
 		//delete needs to have action to delet flight selected
 		aHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminHome frame = new AdminHome();
+				AdminHome frame = new AdminHome(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -74,7 +127,8 @@ public class AdminEditDB extends JFrame{
 
 	}	
 	public static void main(String[] args){
-		AdminEditDB frame = new AdminEditDB();
+		Users u = new Customers();
+		AdminEditDB frame = new AdminEditDB(u);
 		frame.setTitle("Edit Options");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

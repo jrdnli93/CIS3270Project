@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class AdminAddConfirm extends JFrame{
-	public AdminAddConfirm(){
+	public AdminAddConfirm(final Users u){
 	
 	JLabel success = new JLabel("Flight Successfully Added");
 		
@@ -32,7 +32,7 @@ public class AdminAddConfirm extends JFrame{
 	
 	aHome.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			AdminHome frame = new AdminHome();
+			AdminHome frame = new AdminHome(u);
 			frame.setSize(500, 500);
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
@@ -41,8 +41,9 @@ public class AdminAddConfirm extends JFrame{
 	});
 }
 	public static void main(String[] args){
-		AdminAddConfirm frame = new AdminAddConfirm();
-		frame.setTitle("Password Retreival");
+		Users u = new Customers();
+		AdminAddConfirm frame = new AdminAddConfirm(u);
+		frame.setTitle("Flight added");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

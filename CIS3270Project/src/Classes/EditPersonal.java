@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class EditPersonal extends JFrame{
 	public EditPersonal(final Users u){
-		
+		//ADD CHECKS
 		final JTextField fName = new JTextField(((Customers)u).getFirstName());
 		final JTextField mInitial = new JTextField(((Customers)u).getMiddleInitial());
 		final JTextField lName = new JTextField(((Customers)u).getLastName());
