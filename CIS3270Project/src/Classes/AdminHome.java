@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class AdminHome extends JFrame{
-	public AdminHome(){
+	public AdminHome(final Users u){
 		/* All options EXCEPT FOR EDIT DB AND LOGOFF will go to options that are current
 		 * redirect to customer home page, need to find out how to maintain
 		 * admin status
@@ -57,7 +57,7 @@ public class AdminHome extends JFrame{
 		
 		editPersonal.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				EditPersonal frame = new EditPersonal();
+				EditPersonal frame = new EditPersonal(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -99,7 +99,8 @@ public class AdminHome extends JFrame{
 	}
 
 	public static void main(String[] args){
-		AdminHome frame = new AdminHome();
+		Users u = new Customers();
+		AdminHome frame = new AdminHome(u);
 		frame.setTitle("Customer Page");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

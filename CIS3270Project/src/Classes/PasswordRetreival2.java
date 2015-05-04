@@ -48,8 +48,6 @@ public class PasswordRetreival2 extends JFrame{
 				dispose();
 			}
 			else {
-				System.out.println(((Customers)u).getSecurityAnswer());
-				System.out.println(answer.getText());
 				PasswordRetreival4 frame = new PasswordRetreival4();
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);

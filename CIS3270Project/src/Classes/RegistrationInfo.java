@@ -76,6 +76,11 @@ public class RegistrationInfo extends JFrame{
 				SQLStatements s = new SQLStatements();
 				boolean usernameCheck, SSNcheck, emailCheck;
 				
+				int admin = 0;
+				
+				if (c.checkAdminCode(adminCode.getText())) {
+					admin = 1;
+				}
 				
 				//SHOW IN A JFrame
 				if (usernameCheck = c.usernameAvailable(username.getText())) {
@@ -105,7 +110,7 @@ public class RegistrationInfo extends JFrame{
 						//updates database after check
 						s.update("insert into accountinfo (username, password) values ('" + username.getText() + "', '" + password.getText() + "')");
 						//not working
-						s.update("insert into user (username, password, firstname, middleinitial, lastname, address, city, state, zipcode, email, ssn, securityquestion, securityanswer) values ('" + username.getText() + "', '" + password.getText() + "', '" + fName.getText() + "', '" + mInitial.getText() + "', '" + lName.getText() + "', '" + address.getText() + "', '" + city.getText() + "', '" + state.getText() + "', '" + zip.getText() + "', '" + email.getText() + "', '" + ssn.getText() + "', '" + secQuestion.getText() + "', '" + secAnswer.getText() + "')");
+						s.update("insert into user (username, password, firstname, middleinitial, lastname, address, city, state, zipcode, email, ssn, securityquestion, securityanswer, admin) values ('" + username.getText() + "', '" + password.getText() + "', '" + fName.getText() + "', '" + mInitial.getText() + "', '" + lName.getText() + "', '" + address.getText() + "', '" + city.getText() + "', '" + state.getText() + "', '" + zip.getText() + "', '" + email.getText() + "', '" + ssn.getText() + "', '" + secQuestion.getText() + "', '" + secAnswer.getText() + "', " + admin + ")");
 						ConfirmReg cReg = new ConfirmReg();
 						cReg.setSize(500, 500);
 						cReg.setLocationRelativeTo(null);

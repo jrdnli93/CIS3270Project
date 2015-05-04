@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class EditPersonal2 extends JFrame{
-	public EditPersonal2(){
+	public EditPersonal2(final Users u){
 		JButton cHome = new JButton("Home Page");
 		JPanel p1 = new JPanel();
 		p1.add(new JLabel("Your Changes Have Been Saved"));
@@ -27,17 +27,31 @@ public class EditPersonal2 extends JFrame{
 //NEED TO BE ABLE TO RETURN TO CUSTOMER PAGE OR ADMIN PAGE
 		cHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				CustomerHome frame = new CustomerHome();
-				frame.setSize(500, 500);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
-				dispose();
+				
+				
+				if (((Customers)u).isAdmin()) {
+					AdminHome frame = new AdminHome(u);
+					frame.setSize(500, 500);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+					dispose();
+				}
+				else {
+					CustomerHome frame = new CustomerHome(u);
+					frame.setSize(500, 500);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+					dispose();
+				}
+				
+				
 //CURRENT STATUS IS CUSTOMER HOME, NEED TO ADD ADMIN ROUTE
 			}
 		});
 	}
 	public static void main(String[] args){
-		EditPersonal2 frame = new EditPersonal2();
+		Users u = new Customers();
+		EditPersonal2 frame = new EditPersonal2(u);
 		frame.setTitle("Password Retreival");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

@@ -106,12 +106,12 @@ public class Checks {
 			return true;
 		}
 	}
-	public static int checkAdminCode (String adminCode) {
+	public static boolean checkAdminCode (String adminCode) {
 		if (adminCode.equals("1080p")) {
-			return 1;
+			return true;
 		}
 		else {
-			return 0;
+			return false;
 		}
 	}
 	//NEED TO FIX SQL STATEMENT RETURNS STRING WRAPPED IN []

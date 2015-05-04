@@ -102,18 +102,26 @@ public class LoginInfo extends JFrame{
 							e1.printStackTrace();
 						}
 						
-						
-						
-							
-						
-						
-						
-					
+						if (((Customers)u).isAdmin()) {
+							AdminHome aHome = new AdminHome(u);
+							aHome.setSize(500, 500);
+							aHome.setLocationRelativeTo(null);
+							aHome.setVisible(true);
+							dispose();
+						}
+						else {
 							CustomerHome cHome = new CustomerHome(u);
 							cHome.setSize(500, 500);
 							cHome.setLocationRelativeTo(null);
 							cHome.setVisible(true);
 							dispose();
+						}
+							
+						
+						
+						
+					
+							
 					}
 						
 					

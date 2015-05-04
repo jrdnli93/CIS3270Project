@@ -17,18 +17,18 @@ public class CheckLogin {
 			result = s.select("select password from accountinfo where username = '" + a + "'");
 			
 			if (b.equals(result.get(0))) {
-				System.out.println("Login successful");
+				//System.out.println("Login successful");
 				return true;
 			}
-			System.out.println("Username/Password combination not found");
+			//System.out.println("Username/Password combination not found");
 			return false;
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("Username/Password combination not found");
+			//System.out.println("Username/Password combination not found");
 			return false;
 			
 		} catch (Exception e) {
-			System.out.println("Username/Password combination not found");
+			//System.out.println("Username/Password combination not found");
 			return false;
 		}
 		
