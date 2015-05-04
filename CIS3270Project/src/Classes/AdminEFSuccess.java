@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class AdminEFSuccess extends JFrame {
-	public AdminEFSuccess(){
+	public AdminEFSuccess(final Users u){
 		
 		JButton aHome = new JButton("Home Menu");
 		
@@ -24,7 +24,7 @@ public class AdminEFSuccess extends JFrame {
 		
 		aHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminHome frame = new AdminHome();
+				AdminHome frame = new AdminHome(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -34,7 +34,8 @@ public class AdminEFSuccess extends JFrame {
 }
 
 public static void main(String[] args){
-	AdminEFSuccess frame = new AdminEFSuccess();
+	Users u = new Customers();
+	AdminEFSuccess frame = new AdminEFSuccess(u);
 	frame.setTitle("Registration Error");
 	frame.setSize(500, 500);
 	frame.setLocationRelativeTo(null);

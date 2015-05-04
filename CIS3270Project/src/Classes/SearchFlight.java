@@ -12,9 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class SearchFlight extends JFrame{
-	public SearchFlight(){
-		JComboBox depart = new JComboBox(new String[]{"California", "Georgia", "Hawaii", "New York", "Texas"});
-		JComboBox arrive = new JComboBox(new String[]{"California", "Georgia", "Hawaii", "New York", "Texas"});
+	public SearchFlight(final Users u){
+		final JComboBox depart = new JComboBox(new String[]{"Los Angeles,CA", "Atlanta,GA", "Honolulu,HI", "New York, NY", "Austin,TX"});
+		final JComboBox arrive = new JComboBox(new String[]{"Los Angeles,CA", "Atlanta,GA", "Honolulu,HI", "New York, NY", "Austin,TX"});
+		
+		String[] departCityState = depart.getSelectedItem().toString().split("[,]");
+		String[] arrivalCityState = arrive.getSelectedItem().toString().split("[,]");
+		
+		
 		JButton bOK = new JButton("OK");
 		JButton cHome = new JButton("Return to Home Page");
 		
@@ -36,8 +41,9 @@ public class SearchFlight extends JFrame{
 		
 		bOK.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				SearchResults sResult = new SearchResults();
-				sResult.setSize(500, 500);
+				
+				SearchResults sResult = new SearchResults(depart.getSelectedItem().toString(),arrive.getSelectedItem().toString(), u);
+				sResult.setSize(600, 600);
 				sResult.setLocationRelativeTo(null);
 				sResult.setVisible(true);
 				dispose();
@@ -46,17 +52,31 @@ public class SearchFlight extends JFrame{
 //NEED TO HAVE OPTION TO RETURN EITHER TO CUSTOMER OR ADMIN HOME
 		cHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				CustomerHome sResult = new CustomerHome();
-				sResult.setSize(500, 500);
-				sResult.setLocationRelativeTo(null);
-				sResult.setVisible(true);
-				dispose();
+				Checks c = new Checks();
+				if (c.isAdmin(u.getUsername())) {
+					AdminHome sResult = new AdminHome(u);
+					sResult.setSize(500, 500);
+					sResult.setLocationRelativeTo(null);
+					sResult.setVisible(true);
+					dispose();
+				}
+				else {
+					CustomerHome sResult = new CustomerHome(u);
+					sResult.setSize(500, 500);
+					sResult.setLocationRelativeTo(null);
+					sResult.setVisible(true);
+					dispose();
+				}
+				
+				
 			}
 		});
 
 	}	
+	
 	public static void main(String[] args){
-		SearchFlight frame = new SearchFlight();
+		Users u = new Customers();
+		SearchFlight frame = new SearchFlight(u);
 		frame.setTitle("Flight Search");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

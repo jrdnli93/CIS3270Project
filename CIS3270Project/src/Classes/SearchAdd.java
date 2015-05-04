@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class SearchAdd extends JFrame{
-	public SearchAdd(){
+	public SearchAdd(final Users u){
 		JButton searchAgain = new JButton("Search Again");
 		JButton cHome = new JButton("Customer Home");
 		JPanel p1 = new JPanel();
@@ -27,7 +27,7 @@ public class SearchAdd extends JFrame{
 		
 		searchAgain.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				SearchFlight sResult = new SearchFlight();
+				SearchFlight sResult = new SearchFlight(u);
 				sResult.setSize(500, 500);
 				sResult.setLocationRelativeTo(null);
 				sResult.setVisible(true);
@@ -37,16 +37,30 @@ public class SearchAdd extends JFrame{
 		
 		cHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				CustomerHome sResult = new CustomerHome();
-				sResult.setSize(500, 500);
-				sResult.setLocationRelativeTo(null);
-				sResult.setVisible(true);
-				dispose();
+				Checks c = new Checks();
+				if (c.isAdmin(u.getUsername())) {
+					AdminHome sResult = new AdminHome(u);
+					sResult.setSize(500, 500);
+					sResult.setLocationRelativeTo(null);
+					sResult.setVisible(true);
+					dispose();
+
+				}
+				else {
+					CustomerHome sResult = new CustomerHome(u);
+					sResult.setSize(500, 500);
+					sResult.setLocationRelativeTo(null);
+					sResult.setVisible(true);
+					dispose();
+
+				}
+				
 			}
 		});
 	}
 	public static void main(String[] args){
-		SearchAdd frame = new SearchAdd();
+		Users u = new Customers();
+		SearchAdd frame = new SearchAdd(u);
 		frame.setTitle("Password Retreival");
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);

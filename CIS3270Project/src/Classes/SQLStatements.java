@@ -30,7 +30,7 @@ public class SQLStatements {
 		return resultsArrayList;
 	}
 	
-	public static void update(String a) throws SQLException, ClassNotFoundException{
+	public void update(String a) throws SQLException, ClassNotFoundException{
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		

@@ -32,11 +32,22 @@ public class AdminAddConfirm extends JFrame{
 	
 	aHome.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			AdminHome frame = new AdminHome(u);
-			frame.setSize(500, 500);
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
-			dispose();
+			Checks c = new Checks();
+			if (c.isAdmin(u.getUsername())) {
+				AdminHome frame = new AdminHome(u);
+				frame.setSize(500, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				dispose();
+			}
+			else {
+				CustomerHome frame = new CustomerHome(u);
+				frame.setSize(500, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				dispose();
+			}
+			
 		}
 	});
 }

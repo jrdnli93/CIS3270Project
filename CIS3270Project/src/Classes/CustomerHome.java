@@ -27,7 +27,7 @@ public class CustomerHome extends JFrame{
 		
 		searchFlight.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				SearchFlight frame = new SearchFlight();
+				SearchFlight frame = new SearchFlight(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -37,7 +37,7 @@ public class CustomerHome extends JFrame{
 
 		editFlight.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				ViewDelete frame = new ViewDelete();
+				ViewDelete frame = new ViewDelete(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);

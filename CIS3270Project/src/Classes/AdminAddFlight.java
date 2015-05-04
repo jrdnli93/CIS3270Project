@@ -85,13 +85,9 @@ public class AdminAddFlight extends JFrame{
 				String departTime = hourD.getSelectedItem() + ":" + minuteD.getSelectedItem() + " " + amPMD.getSelectedItem() + " " + TZD.getSelectedItem();
 				String arriveTime = hourA.getSelectedItem() + ":" + minuteA.getSelectedItem() + " " + amPMA.getSelectedItem() + " " + TZA.getSelectedItem();
 				String date = month.getSelectedItem() + "/" + daySD.getSelectedItem() + dayDD.getSelectedItem() + "/" + year.getSelectedItem();
-				System.out.println(departCityState[0]);
-				System.out.println(departCityState[1]);
-				System.out.println(departTime);
-				System.out.println(arriveTime);
-				System.out.println(date);
 				
-				if (depart.getSelectedItem().equals(arrive.getSelectedItem())) {
+				
+				if (depart.getSelectedItem().equals(arrive.getSelectedItem()) || (seats.getText().equals("") == true) || (price.getText().equals("") == true)) {
 					AdminAddError frame = new AdminAddError();
 					frame.setSize(500, 500);
 					frame.setLocationRelativeTo(null);

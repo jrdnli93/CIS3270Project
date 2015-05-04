@@ -30,18 +30,27 @@ public class AdminEditDB extends JFrame{
 		JPanel p3 = new JPanel();
 		
 		
-		SQLStatements s = new SQLStatements();
+		final SQLStatements s = new SQLStatements();
 		
+		final JCheckBox[] jcb = new JCheckBox[30];
+		
+		final String[] flightnumber = new String[jcb.length];
 		
 		add(p3, BorderLayout.CENTER);
+		
+		
+		
 		try {
+			
 			ArrayList<String> results = s.select("select * from flights");
 			Object[] r = results.toArray();
-			JCheckBox[] jcb = new JCheckBox[30];
+			
+			
 			for (int i = 0; i < r.length; i++) {
-				System.out.println(results.get(i));
 				
-				p3.add(jcb[0] = new JCheckBox(s.select("select flightnumber from flights where flightnumber = " + results.get(i)) + " " +
+				flightnumber[i] = results.get(i).toString();
+				System.out.println(flightnumber[i]);
+				p3.add(jcb[i] = new JCheckBox(s.select("select flightnumber from flights where flightnumber = " + results.get(i)) + " " +
 						s.select("select departcity from flights where flightnumber = " + results.get(i)) + " " +
 						s.select("select departstate from flights where flightnumber = " + results.get(i)) + " " +
 						s.select("select arrivalcity from flights where flightnumber = " + results.get(i)) + " " + 
@@ -55,17 +64,6 @@ public class AdminEditDB extends JFrame{
 						
 					);
 				
-				
-				/*s.select("select flightnumber from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select departcity from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select departstate from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select arrivalcity from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select city from flights where flightnumber = '" + results.get(i)) + " " +
-				s.select("select departtime from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select arrivetime from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select seatsavailable from flights where flightnumber = " + results.get(i)) + " " +
-				s.select("select totalseats from flights where flightnumber = " + results.get(i))
-				*/
 				
 			}
 		} catch (ClassNotFoundException | SQLException e1) {
@@ -83,6 +81,9 @@ public class AdminEditDB extends JFrame{
 		//delete needs to have action to delet flight selected
 		aHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				
+				
+				
 				AdminHome frame = new AdminHome(u);
 				frame.setSize(500, 500);
 				frame.setLocationRelativeTo(null);
@@ -92,10 +93,28 @@ public class AdminEditDB extends JFrame{
 //1. if-else needed - if flights are actually deleted this action will occur		
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminDelConfirm frame = new AdminDelConfirm();
-				frame.setSize(500, 500);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
+				for (int i = 0; i < jcb.length; i++) {
+						//System.out.println(jcb[i]);
+						try {
+							if(jcb[i].isSelected()) {
+								s.update("delete from flights where flightnumber = " + flightnumber[i]);
+								AdminDelConfirm frame = new AdminDelConfirm();
+								frame.setSize(500, 500);
+								frame.setLocationRelativeTo(null);
+								frame.setVisible(true);
+								dispose();
+							}
+							
+							
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (Exception e2) {
+							//System.out.println("Null pointer exception");
+						}
+					}
+				
+				
 
 /*2. This is the second option - a window will pop up to let Admin Know nothing was deleted
  * 				AdminDelError frame = new AdminDelError();
@@ -109,11 +128,24 @@ public class AdminEditDB extends JFrame{
 //1. if-else needed - if flights is chosen to edit this action will occur				
 		edit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AdminEditFlight frame = new AdminEditFlight();
-				frame.setSize(500, 500);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
-				dispose();
+				for (int i = 0; i < jcb.length; i++) {
+					//System.out.println(jcb[i]);
+					try {
+						if(jcb[i].isSelected()) {
+							
+							AdminEditFlight frame = new AdminEditFlight(u,flightnumber[i]);
+							frame.setSize(500, 500);
+							frame.setLocationRelativeTo(null);
+							frame.setVisible(true);
+							dispose();
+						}
+					} catch (Exception E) {
+						
+					}
+						
+					
+				}
+				
 
 /*2. This is the second option - a window will pop up to let Admin Know nothing
  * was chosen to edit
