@@ -91,17 +91,17 @@ public class RegistrationInfo extends JFrame{
 				}
 				
 				if (SSNcheck = c.checkSSN(ssn.getText())) {
-					System.out.println(ssn.getText());
+					
 				}
 				else {
-					System.out.println("SSN not valid");
+					
 				}
 				
 				if (emailCheck = c.checkEmail(email.getText())) {
-					System.out.println(email.getText());
+					
 				}
 				else {
-					System.out.println("Email already taken");
+					
 				}
 				
 				if (usernameCheck == true && SSNcheck == true && emailCheck == true) {
