@@ -56,7 +56,7 @@ public class PasswordRetreival extends JFrame{
 							((Customers)user).setSecurityAnswer(s.select("select securityanswer from user where username = '" + uName.getText() + "'").get(0));
 							((Customers)user).setPassword(s.select("select password from user where username = '" + uName.getText() + "'").get(0));
 						} catch (ClassNotFoundException | SQLException e1) {
-							System.out.println("error");
+							
 						}
 					}
 					PasswordRetreival2 login = new PasswordRetreival2(user);

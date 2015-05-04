@@ -84,10 +84,10 @@ public class RegistrationInfo extends JFrame{
 				
 				//SHOW IN A JFrame
 				if (usernameCheck = c.usernameAvailable(username.getText())) {
-					System.out.println(username.getText());
+					
 				}
 				else {
-					System.out.println("Username already taken");
+					
 				}
 				
 				if (SSNcheck = c.checkSSN(ssn.getText())) {
@@ -116,7 +116,7 @@ public class RegistrationInfo extends JFrame{
 						cReg.setLocationRelativeTo(null);
 						cReg.setVisible(true);
 					} catch (ClassNotFoundException | SQLException e1) {
-						System.out.println("error");
+						
 						
 					}
 				}

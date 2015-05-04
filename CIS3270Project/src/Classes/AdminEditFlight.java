@@ -138,8 +138,7 @@ public class AdminEditFlight extends JFrame {
 						s.update("update flights set totalseats = '" + seats.getText() + "' where flightnumber = " + flightnumber);
 					
 					} catch (ClassNotFoundException | SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						
 					}
 				}
 				

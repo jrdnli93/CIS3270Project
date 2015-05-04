@@ -61,14 +61,14 @@ public class ViewDelete extends JFrame {
 					);
 			}
 		} catch (Exception e) {
-			System.out.println("error");
+			
 		}
 		
 		
 		cHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Checks c = new Checks();
-				if (c.isAdmin(u.getUsername())) {
+				if (((Customers)u).isAdmin()) {
 					AdminHome sResult = new AdminHome(u);
 					sResult.setSize(500, 500);
 					sResult.setLocationRelativeTo(null);
@@ -90,20 +90,32 @@ public class ViewDelete extends JFrame {
 		//Add action to delete content here
 		delFlight.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				boolean occured = false;
 				for (int i = 0; i < flightnumber.length; i++)
 					try {
 						s.update("delete from customerflights where username = '" + u.getUsername() + "' and flightnumber = " + flightnumber[i]);
-					} catch (ClassNotFoundException | SQLException e1) {
-						System.out.println("1");
-					} catch (Exception e2) {
+						occured = true;
 						
+					} catch (ClassNotFoundException | SQLException e1) {
+						ViewDeleteEmpty frame = new ViewDeleteEmpty();
+						frame.setSize(500, 500);
+						frame.setLocationRelativeTo(null);
+						frame.setVisible(true);
+					} catch (Exception e2) {
+						ViewDeleteEmpty frame = new ViewDeleteEmpty();
+						frame.setSize(500, 500);
+						frame.setLocationRelativeTo(null);
+						frame.setVisible(true);
 					}
-					
+				if (occured) {
+					ViewDeleteConfirm frame = new ViewDeleteConfirm();
+					frame.setSize(500, 500);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+				}
 				
-				ViewDeleteConfirm frame = new ViewDeleteConfirm();
-				frame.setSize(500, 500);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
+				
+				
 				
 			}
 		});

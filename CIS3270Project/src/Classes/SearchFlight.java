@@ -53,7 +53,7 @@ public class SearchFlight extends JFrame{
 		cHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Checks c = new Checks();
-				if (c.isAdmin(u.getUsername())) {
+				if (((Customers)u).isAdmin()) {
 					AdminHome sResult = new AdminHome(u);
 					sResult.setSize(500, 500);
 					sResult.setLocationRelativeTo(null);

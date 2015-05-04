@@ -98,8 +98,7 @@ public class LoginInfo extends JFrame{
 								((Customers)u).setAdmin(false);
 							}
 						} catch (ClassNotFoundException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							
 						}
 						
 						if (((Customers)u).isAdmin()) {

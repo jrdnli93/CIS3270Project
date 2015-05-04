@@ -97,8 +97,7 @@ public class AdminAddFlight extends JFrame{
 					try {
 						s.update("insert into flights (departcity, departstate, arrivalcity, arrivalstate, departtime, arrivaltime, flightdate, price, totalseats) values('" + departCityState[0] + "', '" + departCityState[1] + "', '" + arrivalCityState[0] + "', '" + arrivalCityState[1] + "', '" + departTime + "', '" + arriveTime + "', '" + date + "', '" + price.getText() + "', " + seats.getText() +")");
 					} catch (ClassNotFoundException | SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						
 					}
 					AdminAddConfirm frame = new AdminAddConfirm(u);
 					frame.setSize(500, 500);
