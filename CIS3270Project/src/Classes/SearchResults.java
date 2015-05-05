@@ -75,8 +75,7 @@ public class SearchResults extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				
 				for (int i = 0; i < jcb.length; i++) {
-					System.out.println(jcb[i]);
-					System.out.println(u.getUsername());
+					
 					
 						
 							try {
@@ -142,7 +141,7 @@ public class SearchResults extends JFrame {
 		cHome.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Checks c = new Checks();
-				if (c.isAdmin(u.getUsername())) {
+				if (((Customers)u).isAdmin()) {
 
 					AdminHome sResult = new AdminHome(u);
 					sResult.setSize(500, 500);

@@ -59,17 +59,7 @@ public class Checks {
 	}
 	
 	//checks if has @domain.com
-	public boolean emailFormat (String email) {
-		
-		String[] s = email.split("[@]");
-		
-		if (s.length > 2) {
-			return false;
-		}
-		
-		
-		
-	}
+	
 	
 	//checks if email is available
 	public boolean checkEmail (String email) {
@@ -149,25 +139,5 @@ public class Checks {
 		}
 		
 	}
-	public boolean isAdmin (String username) {
-		try {
-			ArrayList<String> result = new ArrayList<String>();
-			SQLStatements s = new SQLStatements();
-			result = s.select("select admin from accountinfo where username ='" + username + "'");
-			if (Integer.parseInt(result.get(0)) == 1) {
-				return true;
-			}
-			else {
-				return false;
-			}
 			
-			
-			
-		} catch (ClassNotFoundException | SQLException e) {
-			return false;
-			
-		} catch (Exception e) {
-			return false;
-		}
-	}
 }
